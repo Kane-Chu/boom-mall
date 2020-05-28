@@ -2,11 +2,142 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <version>2.3.0.RELEASE</version>
+        <relativePath/>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.boom</groupId>
+    <groupId>org.boom.mall</groupId>
     <artifactId>boom-mall</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
 
+    <modules>
+        <module>mall-auth-parent</module>
+        <module>mall-order-parent</module>
+        <module>mall-user-parent</module>
+        <module>mall-goods-parent</module>
+        <module>mall-pay-parent</module>
+        <module>mall-stock-parent</module>
+        <module>mall-account-parent</module>
+        <module>mall-webapp</module>
+    </modules>
+
+    <properties>
+        <groovy.version>3.0.4</groovy.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- module -->
+            <dependency>
+                <groupId>org.boom.mall</groupId>
+                <artifactId>mall-auth-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.boom.mall</groupId>
+                <artifactId>mall-auth-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.boom.mall</groupId>
+                <artifactId>mall-order-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.boom.mall</groupId>
+                <artifactId>mall-order-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.boom.mall</groupId>
+                <artifactId>mall-user-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.boom.mall</groupId>
+                <artifactId>mall-user-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.boom.mall</groupId>
+                <artifactId>mall-goods-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.boom.mall</groupId>
+                <artifactId>mall-goods-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.boom.mall</groupId>
+                <artifactId>mall-pay-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.boom.mall</groupId>
+                <artifactId>mall-pay-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.boom.mall</groupId>
+                <artifactId>mall-stock-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.boom.mall</groupId>
+                <artifactId>mall-stock-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.boom.mall</groupId>
+                <artifactId>mall-account-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.boom.mall</groupId>
+                <artifactId>mall-account-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.boom.mall</groupId>
+                <artifactId>mall-webapp</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <!-- groovy -->
+            <dependency>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-all</artifactId>
+                <version>${groovy.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>org.boom.mall.webapp.MallWebappApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
