@@ -1,0 +1,12 @@
+${AnsiColor.BLUE}
+ /$$$$$$$   /$$$$$$   /$$$$$$  /$$      /$$
+| $$__  $$ /$$__  $$ /$$__  $$| $$$    /$$$
+| $$  \ $$| $$  \ $$| $$  \ $$| $$$$  /$$$$
+| $$$$$$$ | $$  | $$| $$  | $$| $$ $$/$$ $$
+| $$__  $$| $$  | $$| $$  | $$| $$  $$$| $$
+| $$  \ $$| $$  | $$| $$  | $$| $$\  $ | $$
+| $$$$$$$/|  $$$$$$/|  $$$$$$/| $$ \/  | $$
+|_______/  \______/  \______/ |__/     |__/
+
+${AnsiColor.CYAN} :: ${application.title} :: ${AnsiColor.YELLOW}(${application.version})
+${AnsiColor.MAGENTA} :: Spring-Boot :: ${AnsiColor.YELLOW}(${spring-boot.version})

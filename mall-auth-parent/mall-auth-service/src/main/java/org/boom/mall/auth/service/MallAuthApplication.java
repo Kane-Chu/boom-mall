@@ -1,16 +1,16 @@
-package org.boom.mall.webapp;
+package org.boom.mall.auth.service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * mall-webapp启动类
+ * mall-auth 启动类
  *
  * @author kane
  */
 @SpringBootApplication
-public class MallWebappApplication {
+public class MallAuthApplication {
     public static void main(String[] args) {
-        SpringApplication.run(MallWebappApplication.class, args);
+        SpringApplication.run(MallAuthApplication.class, args);
     }
 }

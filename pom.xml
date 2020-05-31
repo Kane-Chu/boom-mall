@@ -25,10 +25,13 @@
         <module>mall-stock-parent</module>
         <module>mall-account-parent</module>
         <module>mall-webapp</module>
+        <module>mall-core</module>
     </modules>
 
     <properties>
         <groovy.version>3.0.4</groovy.version>
+        <guava.version>29.0-jre</guava.version>
+        <servlet.version>2.5</servlet.version>
     </properties>
 
     <dependencyManagement>
@@ -110,6 +113,19 @@
                 <artifactId>mall-webapp</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.boom.mall</groupId>
+                <artifactId>mall-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- spring -->
+            <dependency>
+                <groupId>org.springframework.security.oauth</groupId>
+                <artifactId>spring-security-oauth2</artifactId>
+                <version>2.3.6.RELEASE</version>
+            </dependency>
+
             <!-- groovy -->
             <dependency>
                 <groupId>org.codehaus.groovy</groupId>
@@ -118,26 +134,49 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!-- guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+            <!-- servlet -->
+<!--            <dependency>-->
+<!--                <groupId>javax.servlet</groupId>-->
+<!--                <artifactId>servlet-api</artifactId>-->
+<!--                <version>${servlet-api.version}</version>-->
+<!--                <scope>provided</scope>-->
+<!--            </dependency>-->
+
+            <!-- lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
+    <profiles>
+        <profile>
+            <id>jdk9+</id>
+            <activation>
+                <jdk>[9,)</jdk>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>javax.annotation</groupId>
+                    <artifactId>javax.annotation-api</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.glassfish.jaxb</groupId>
+                    <artifactId>jaxb-runtime</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>org.boom.mall.webapp.MallWebappApplication</mainClass>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 </project>
