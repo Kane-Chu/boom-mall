@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.boom.mall.auth.api.bean.AuthUser;
 import org.boom.mall.auth.api.consts.SecurityConstants;
 import org.springframework.context.annotation.Bean;
@@ -41,11 +39,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         // TODO 改为 jdbc 的
-        clients.inMemory().withClient("mall")
+        clients.inMemory()
+                .withClient("mall")
                 .resourceIds(MALL_ACCOUNT_ID, MALL_GOODS_ID, MALL_ORDER_ID)
+                .authorizedGrantTypes("password", "refresh_token")
                 .authorities("ROLE_CLIENT")
                 .scopes("read", "write")
-                .secret("pass1234")
+                .secret("{noop}111111")
                 // 授权成功后登陆
                 .redirectUris("https://www.baidu.com")
                 // 认证通过后自动授权 下发token 而不需要用户再点击确认下
@@ -54,21 +54,20 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        // header 中要有 mall/client
-        security.realm("mall/client")
-                .allowFormAuthenticationForClients()
+        security.allowFormAuthenticationForClients()
+                .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("permitAll()");
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.allowedTokenEndpointRequestMethods(HttpMethod.POST)
+        // 默认只允许 POST
+        endpoints.allowedTokenEndpointRequestMethods(HttpMethod.POST, HttpMethod.GET)
                 .tokenStore(tokenStore())
                 .tokenEnhancer(tokenEnhancer())
                 .userDetailsService(userDetailsService)
                 .authenticationManager(authenticationManager)
-                .reuseRefreshTokens(false)
-                .pathMapping("/oauth/confirm_access", "/token/confirm_access");
+                .reuseRefreshTokens(false);
     }
 
     @Bean
