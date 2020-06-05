@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 import org.assertj.core.api.Assertions;
 import org.boom.mall.auth.service.PasswordAuthTest.ResourceConfiguration;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +30,6 @@ class PasswordAuthTest {
 
     private static final String DOMAIN = "http://127.0.0.1:8080";
     private static final String ACCESS_TOKEN_URI = DOMAIN + "/oauth/token";
-
-    @Before
-    public void setup() throws Exception {
-
-    }
 
     @Configuration
     @EnableOAuth2Client
