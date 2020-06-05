@@ -9,6 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>mall-auth-service</artifactId>
+    <packaging>jar</packaging>
 
     <dependencies>
 
@@ -50,6 +51,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.boom.mall</groupId>
+            <artifactId>mall-redis</artifactId>
         </dependency>
 
     </dependencies>

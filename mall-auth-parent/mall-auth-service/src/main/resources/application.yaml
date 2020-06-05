@@ -1,8 +1,11 @@
 spring:
   application:
-    name: mall-auth
+    name: @artifactId@
 
-#logging:
-#  level:
-#    root: debug
+
+
+
+
+
+
 
