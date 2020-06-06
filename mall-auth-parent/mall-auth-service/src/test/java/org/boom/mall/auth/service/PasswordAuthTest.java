@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
@@ -28,8 +29,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 @ContextConfiguration(classes = ResourceConfiguration.class)
 class PasswordAuthTest {
 
+    @LocalServerPort
+    private int port;
+
     private static final String DOMAIN = "http://127.0.0.1:8080";
     private static final String ACCESS_TOKEN_URI = DOMAIN + "/oauth/token";
+
 
     @Configuration
     @EnableOAuth2Client
@@ -47,7 +52,6 @@ class PasswordAuthTest {
             details.setPassword("pass1234");
             return new OAuth2RestTemplate(details);
         }
-
     }
 
     @Autowired
