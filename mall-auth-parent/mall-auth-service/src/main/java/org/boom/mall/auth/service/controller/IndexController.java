@@ -1,7 +1,7 @@
 package org.boom.mall.auth.service.controller;
 
+import com.alibaba.nacos.api.config.annotation.NacosValue;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class IndexController {
+
+    @NacosValue(value = "${greet:hi}", autoRefreshed = true)
+    private String greet;
+
     @GetMapping("/")
     public String index() {
-        return "index";
+        return greet;
     }
 }
