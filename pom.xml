@@ -27,11 +27,13 @@
         <module>mall-webapp</module>
         <module>mall-core</module>
         <module>mall-redis</module>
+        <module>mall-gateway</module>
     </modules>
 
     <properties>
         <groovy.version>3.0.4</groovy.version>
         <guava.version>29.0-jre</guava.version>
+        <nacos.springboot.version>0.2.7</nacos.springboot.version>
         <servlet.version>2.5</servlet.version>
     </properties>
 
@@ -130,6 +132,25 @@
                 <groupId>org.springframework.security.oauth</groupId>
                 <artifactId>spring-security-oauth2</artifactId>
                 <version>2.3.6.RELEASE</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-gateway</artifactId>
+                <version>2.2.3.RELEASE</version>
+            </dependency>
+
+            <!-- alibaba -->
+            <dependency>
+                <groupId>com.alibaba.boot</groupId>
+                <artifactId>nacos-config-spring-boot-starter</artifactId>
+                <version>${nacos.springboot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.boot</groupId>
+                <artifactId>nacos-discovery-spring-boot-starter</artifactId>
+                <version>${nacos.springboot.version}</version>
             </dependency>
 
             <!-- groovy -->

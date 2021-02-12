@@ -59,6 +59,7 @@ class PasswordAuthTest {
 
     @Test
     void testGetAccessToken() {
+
         OAuth2AccessToken accessToken = passwordOAuthRestTemplate.getAccessToken();
         String value = accessToken.getValue();
         Assertions.assertThat(value).isNotBlank();

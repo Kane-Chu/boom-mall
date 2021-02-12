@@ -42,6 +42,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     private final UserDetailsService userDetailsService;
     private final RedisConnectionFactory redisConnectionFactory;
 
+    /**
+     * 连接此认证服务的client
+     *
+     * @param clients clients
+     * @throws Exception Exception
+     */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         // TODO 改为 jdbc 的
@@ -58,6 +64,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .autoApprove(true);
     }
 
+    /**
+     * 允许客户端form提交 获取access key不需认证 验证 access token不需认证
+     *
+     * @param security security
+     * @throws Exception Exception
+     */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security.allowFormAuthenticationForClients()

@@ -1,7 +1,6 @@
 package org.boom.mall.redis.config;
 
-import org.springframework.boot.autoconfigure.AutoConfigureBefore;
-import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
+import org.springframework.boot.autoconfigure.data.redis.LettuceClientConfigurationBuilderCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -21,6 +20,7 @@ public class RedisTemplateConfig {
     public RedisTemplateConfig(RedisConnectionFactory factory) {
         this.factory = factory;
     }
+
 
     @Bean
     public RedisTemplate<String, Object> redisTemplate() {
