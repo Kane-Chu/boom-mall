@@ -31,7 +31,7 @@ public class MallGatewayApplication {
     @RequestMapping("discovery")
     public static class DiscoveryController {
 
-        @NacosInjected
+        @NacosInjected 
         private NamingService namingService;
 
         @RequestMapping(value = "/get", method = GET)
