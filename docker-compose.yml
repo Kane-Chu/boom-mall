@@ -1,0 +1,46 @@
+services:
+  mall-auth-service:
+    image: boommall/mall-auth-service:1.0.0-SNAPSHOT
+    restart: always
+    depends_on:
+      - nacos
+    environment:
+      SPRING_APPLICATION_JSON: '{"nacos":{"discovery":{"server-addr":"172.20.0.100:8848","auto-register":true}}}'
+    ports:
+      - '18080:8080'
+    networks:
+      boomMallNetwork:
+        ipv4_address: 172.20.0.10
+
+  mall-gateway:
+    image: boommall/mall-gateway:1.0.0-SNAPSHOT
+    restart: always
+    depends_on:
+      - nacos
+    environment:
+      SPRING_APPLICATION_JSON: '{"nacos":{"discovery":{"server-addr":"172.20.0.100:8848","auto-register":true}}}'
+    ports:
+      - '28080:8080'
+    networks:
+      boomMallNetwork:
+        ipv4_address: 172.20.0.11
+
+  nacos:
+    image: nacos/nacos-server:2.0.2
+    ports:
+      - '18848:8848'
+    environment:
+      - MODE=standalone
+    networks:
+      boomMallNetwork:
+        ipv4_address: 172.20.0.100
+
+
+networks:
+  boomMallNetwork:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+          - subnet: "172.20.0.0/24"
+            gateway: "172.20.0.1"
